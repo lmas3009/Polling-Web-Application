@@ -1,5 +1,6 @@
 # Polling-Web-Application
-This application done using Flask and backend with Mysql
+Where you can share your poll to your friends/students to poll/answer it.
+This application done using Flask with backend using Mysql
 
 # Intro
 You can Create/Update/Delete a poll. You can also share this poll to your students/friends by copying the shareable link. You can also see the statistics of your poll where you can see list of users who answered the poll with there answers.
