@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Link</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Shareab.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="left">
+                <p>Polling Web App</p>
+            </div>
+        </div>
+        <div class="main">
+            <div class="card">
+                <div class="cardinfo">
+                    <div class="author">
+                        <p>{{data[6]}}</p>
+                    </div>
+                    <div class="title">
+                        <p>{{data[1]}}</p>
+                    </div>
+                    <div class="cardpollquestion">
+                        <ul>
+                            <form action="{{ url_for('answer',uname=session['user'],question=data[1]) }}" method="post">
+                            {% for i in range(2,len-1) %}
+                                {% if(data[i]!="") %}
+                                    <li>
+                                        <input type="radio" name="pollq" value="{{data[i]}}"> <p>{{data[i]}}</p>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                                <label>Name:</label>
+                                <input type="text" name="name" placeholder="Enter Your Name" required>
+                                <input type="submit" value="Submit your poll" name="submit" class="button">
+<!--                                <div class="button" onclick="displayRadioValue()">-->
+<!--                                    <p>Submit your vote</p>-->
+<!--                                </div>-->
+                            </form>
+                        </ul>
+                    </div>
+                </div>
+                <div class="cardpollres">
+                    <div class="sep"></div>
+                    <div class="voteres">
+                        <p>Vote</p>
+                        <strong>{{ votecount }}</strong>
+                    </div>
+                    <hr>
+                    <div class="pollshare">
+                        <p>Share</p>
+                        <div class="copylink">
+                            <div class="copytext">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="18"
+                                    viewBox="0 0 350 350" xml:space="preserve">
+                                    <g id="icon"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                                        transform="translate(-1.9444444444444287 -1.9444444444444287) scale(3.89 3.89)">
+                                        <path
+                                            d="M 41.242 69.371 l -8.953 8.954 c -0.288 0.287 -0.627 0.331 -0.803 0.331 c -0.176 0 -0.515 -0.044 -0.803 -0.332 L 11.676 59.317 c -0.443 -0.443 -0.443 -1.163 0 -1.606 l 24.98 -24.98 c 0.288 -0.288 0.626 -0.331 0.802 -0.331 h 0 c 0.176 0 0.515 0.043 0.803 0.331 l 16.362 16.362 l 8.025 -8.025 L 46.287 24.707 c -4.869 -4.869 -12.789 -4.868 -17.657 0 L 3.65 49.686 c -4.867 4.868 -4.867 12.789 0 17.656 l 19.007 19.007 c 2.434 2.434 5.631 3.65 8.828 3.65 c 3.197 0 6.394 -1.217 8.827 -3.65 l 13.961 -13.961 C 50.063 74.716 46.357 73.631 41.242 69.371 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,0,0); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                        <path
+                                            d="M 48.758 20.629 l 8.953 -8.954 c 0.288 -0.287 0.627 -0.331 0.803 -0.331 c 0.176 0 0.515 0.044 0.803 0.332 l 19.007 19.007 c 0.443 0.443 0.443 1.163 0 1.606 l -24.98 24.98 c -0.288 0.288 -0.626 0.331 -0.802 0.331 h 0 c -0.176 0 -0.515 -0.043 -0.803 -0.331 L 35.377 40.907 l -8.025 8.025 l 16.362 16.361 c 4.869 4.869 12.789 4.868 17.657 0 l 24.98 -24.979 c 4.867 -4.868 4.867 -12.789 0 -17.656 L 67.342 3.651 C 64.908 1.217 61.711 0 58.514 0 c -3.197 0 -6.394 1.217 -8.827 3.65 L 35.725 17.611 C 39.937 15.284 43.643 16.369 48.758 20.629 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,0,0); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                    </g>
+                                </svg>
+                                <p onclick="myFunction()">Copy text</p>
+                            </div>
+                            <div class="linkurl">
+                                <textarea id="myInput" aria-hidden="false" readonly>http://127.0.0.1:5000/{{url}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function displayRadioValue() {
+            var ele = document.getElementsByName('pollp');
+
+            for (i = 0; i < ele.length; i++) {
+                if (ele[i].checked)
+                    console.log(ele[i].value);
+            }
+        }
+
+        function myFunction() {
+          var copyText = document.getElementById("myInput");
+          copyText.select();
+          copyText.setSelectionRange(0, 99999)
+          document.execCommand("copy");
+          alert("Copied to Clipboard");
+        }
+    </script>
+</body>
+</html>
+
+
+
+<!--    {% for i in range(len-1) %}-->
+<!--    <p>{{ data[i] }}</p>-->
+<!--    {% endfor %}-->
+<!--    <form action="{{ url_for('answer',uname=data[len-1],question=data[1]) }}" method="post">-->
+<!--        <label>Name</label>-->
+<!--        <input type="text" name="name"><br><br>-->
+<!--        <label>Answer</label>-->
+<!--        <input type="text" name="answer">-->
+<!--        <input type="submit" name="submit">-->
+<!--    </form>-->
+<!--    {{error}}-->

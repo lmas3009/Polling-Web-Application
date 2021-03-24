@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Poll</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/createpoll.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="left">
+                <p>Polling Web App</p>
+            </div>
+        </div>
+        <div class="main">
+            <div class="card">
+                <div class="cardinfo">
+                    <div class="author">
+                        <p>{{uname}}</p>
+                    </div>
+                    <form action=" {{ url_for('add_poll') }} " method="post">
+                    <div class="title">
+                        <textarea name="question" id="" cols="20" placeholder="Type your Question?"></textarea>
+                    </div>
+                    <div class="cardpollquestion">
+                        <ul>
+                                <li>
+                                    <input type="text" name="opt1"  placeholder="Option1">
+                                </li>
+                                <li>
+                                    <input type="text" name="opt2"  placeholder="Option2">
+                                </li>
+                                <li>
+                                    <input type="text" name="opt3" placeholder="Option3">
+                                </li>
+                                <li>
+                                    <input type="text" name="opt4"  placeholder="Option4">
+                                </li>
+                                <label>Answer</label>
+                                <li>
+                                    <input type="text" name="ans" placeholder="Corresponding Answer">
+                                </li>
+                                <div class="btns">
+                                    <input type="submit" value="Create A Poll" name="submit" class="button">
+                                    <a href="{{ url_for('home') }}" class="clsbutton">Cancel</a>
+                                </div>
+                        </ul>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+

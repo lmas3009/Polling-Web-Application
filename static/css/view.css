@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container .header {
+  height: 50px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: aquamarine;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .header .left {
+  float: left;
+  border: 1px solid;
+  padding: 5px;
+}
+
+.container .header .left p {
+  font-size: 20px;
+}
+
+.container .main {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  height: 90vh;
+  margin-top: 20px;
+}
+
+.container .main .card {
+  width: 70%;
+  height: 100%;
+  background-color: #f3f4f8;
+  border-radius: 10px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
+}
+
+.container .main .card .cardinfo {
+  padding: 30px;
+  display: inline;
+  max-width: 600px;
+}
+
+.container .main .card .cardinfo .author {
+  background-color: #ddecff;
+  width: 100px;
+  padding: 5px;
+  border-radius: 20px;
+  text-align: center;
+  height: 15px;
+}
+
+.container .main .card .cardinfo .author p {
+  color: #9db9db;
+}
+
+.container .main .card .cardinfo .title p {
+  font-size: 30px;
+}
+
+.container .main .card .cardinfo .cardpollquestion ul li {
+  list-style: none;
+  height: 60px;
+  background-color: red;
+  margin: 10px;
+  border-radius: 5px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.container .main .card .cardinfo .cardpollquestion ul li input {
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  width: 350px;
+  color: white;
+}
+
+.container .main .card .cardinfo .cardpollquestion ul li p {
+  padding: 10px;
+  color: white;
+}
+
+.container .main .card .cardinfo .cardpollquestion ul label {
+  font-size: 20px;
+  margin-left: 15px;
+}
+
+.container .main .card .cardinfo .cardpollquestion ul a {
+  text-decoration: none;
+  margin-top: 100px;
+  background-color: #4bd97f;
+  color: white;
+  width: 150px;
+  padding: 10px;
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin: 15px;
+  border-radius: 5px;
+  font-size: 20px;
+  border: none;
+  height: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container .main .card .cardinfo .cardpollquestion ul .button {
+  margin-top: 100px;
+  background-color: #4bd97f;
+  color: white;
+  width: 200px;
+  padding: 10px;
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin: 15px;
+  border-radius: 5px;
+  font-size: 20px;
+  border: none;
+  height: 40px;
+}
+
+@media only screen and (max-width: 680px) {
+  .container .main .card .cardinfo .cardpollquestion ul .btns {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .container .main .card .cardinfo .cardpollquestion ul .btns a {
+    height: 25px;
+  }
+}
+
+.container .main .card .cardpollres {
+  width: 100%;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  height: 80%;
+}
+
+.container .main .card .cardpollres .sep {
+  height: 100px;
+  width: 100%;
+}
+
+.container .main .card .cardpollres a {
+  text-decoration: none;
+}
+
+.container .main .card .cardpollres a .button {
+  margin-top: 100px;
+  background-color: #4bd97f;
+  color: white;
+  width: 170px;
+  padding: 10px;
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin: 15px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.container .main .card .cardpollres .voteres {
+  width: 100%;
+  padding: 20px;
+  background-color: white;
+  margin-right: 5px;
+  border-radius: 10px;
+}
+
+.container .main .card .cardpollres .voteres p {
+  font-size: 15px;
+  color: gray;
+  margin-bottom: 5px;
+}
+
+.container .main .card .cardpollres .voteres strong {
+  font-size: 30px;
+}
+
+@media only screen and (max-width: 680px) {
+  .container .main .card .cardpollres {
+    height: 20%;
+  }
+  .container .main .card .cardpollres .sep {
+    height: 0px;
+  }
+  .container .main .card .cardpollres .voteres {
+    margin-left: 15px;
+  }
+  .container .main .card .cardpollres .pollshare {
+    height: 130px;
+    margin-left: 15px;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .container .main .card {
+    width: 80%;
+    display: inline;
+  }
+  .container .main .card .cardinfo .author {
+    margin-left: 10px;
+  }
+  .container .main .card .cardinfo .title {
+    margin: 10px;
+  }
+  .container .main .card .cardinfo .title p {
+    font-size: 30px;
+  }
+}
+/*# sourceMappingURL=view.css.map */

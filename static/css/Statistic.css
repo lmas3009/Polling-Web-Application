@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Blinker&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Blinker', sans-serif;
+}
+
+.container .header {
+  height: 50px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: aquamarine;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .header .left {
+  float: left;
+  border: 1px solid;
+  padding: 5px;
+}
+
+.container .header .left p {
+  font-size: 20px;
+}
+
+.container .main .canvas .line canvas {
+  height: 45px;
+}
+
+@media only screen and (max-width: 680px) {
+  .container .main .canvas .line canvas {
+    height: 50px;
+    width: 100px;
+  }
+  .container .main .canvas .pie canvas {
+    height: 50px;
+    width: 150px;
+  }
+}
+
+.container .main .listres {
+  margin-top: 20px;
+  min-height: 10vh;
+  max-height: 60vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  margin-bottom: 20px;
+  margin: 20px;
+}
+
+.container .main .listres table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.container .main .listres td, .container .main .listres th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.container .main .listres th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  margin-top: -3px;
+}
+
+.container .main .listres tr:nth-child(even) {
+  background-color: #dddddd;
+}
+/*# sourceMappingURL=statistic.css.map */

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Polling Web Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Home.css') }}">
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="left">
+                <p>Polling Web App</p>
+            </div>
+            <div class="right">
+                <p>Welcome <strong>{{ uname.title() }}</strong>!</p>
+                <div class="button">
+                    <a href="{{ url_for('logout') }}"><p>Logout</p></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="top">
+                <div class="flex">
+                    <div class="button">
+                        <a href="{{ url_for('create_poll') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="25"
+                                height="25" viewBox="0 0 350 350" xml:space="preserve">
+                                <g id="icon"
+                                    style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                                    transform="translate(-1.9444444444444287 -1.9444444444444287) scale(3.89 3.89)">
+                                    <circle cx="45" cy="45" r="45"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"
+                                        transform="  matrix(1 0 0 1 0 0) " />
+                                    <path
+                                        d="M 41.901 78.5 c -1.657 0 -3 -1.343 -3 -3 V 20.698 c 0 -1.657 1.343 -3 3 -3 s 3 1.343 3 3 V 75.5 C 44.901 77.157 43.558 78.5 41.901 78.5 z"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                    <path
+                                        d="M 69.302 51.1 H 14.5 c -1.657 0 -3 -1.343 -3 -3 s 1.343 -3 3 -3 h 54.802 c 1.657 0 3 1.343 3 3 S 70.959 51.1 69.302 51.1 z"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                    <path
+                                        d="M 45.099 75.302 c -1.657 0 -3 -1.343 -3 -3 V 17.5 c 0 -1.657 1.343 -3 3 -3 s 3 1.343 3 3 v 54.802 C 48.1 73.959 46.756 75.302 45.099 75.302 z"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                    <path
+                                        d="M 72.5 47.9 H 17.698 c -1.657 0 -3 -1.343 -3 -3 s 1.343 -3 3 -3 H 72.5 c 1.657 0 3 1.343 3 3 S 74.157 47.9 72.5 47.9 z"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                </g>
+                            </svg>
+                            <p>Create Poll</p>
+                        </a>
+                    </div>
+<!--                    <div class="button-dash">-->
+<!--                        <a href="{{ url_for('Dashboard') }}">-->
+<!--                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="25"-->
+<!--                                 viewBox="0 0 350 350" xml:space="preserve">-->
+<!--                                <g id="icon"-->
+<!--                                    style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"-->
+<!--                                    transform="translate(-1.9444444444444287 -1.9444444444444287) scale(3.89 3.89)">-->
+<!--                                    <path-->
+<!--                                        d="M 35.813 54.013 H 4.514 C 2.025 54.013 0 51.987 0 49.498 V 4.514 C 0 2.025 2.025 0 4.514 0 h 31.299 c 2.489 0 4.514 2.025 4.514 4.514 v 44.984 C 40.328 51.987 38.303 54.013 35.813 54.013 z"-->
+<!--                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(84,192,235); fill-rule: nonzero; opacity: 1;"-->
+<!--                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />-->
+<!--                                    <path-->
+<!--                                        d="M 35.813 90 H 4.514 C 2.025 90 0 87.975 0 85.485 V 69.741 c 0 -2.489 2.025 -4.515 4.514 -4.515 h 31.299 c 2.489 0 4.514 2.025 4.514 4.515 v 15.744 C 40.328 87.975 38.303 90 35.813 90 z"-->
+<!--                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(248,182,76); fill-rule: nonzero; opacity: 1;"-->
+<!--                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />-->
+<!--                                    <path-->
+<!--                                        d="M 85.485 90 H 54.187 c -2.489 0 -4.515 -2.025 -4.515 -4.515 V 40.501 c 0 -2.489 2.025 -4.514 4.515 -4.514 h 31.299 c 2.489 0 4.515 2.025 4.515 4.514 v 44.984 C 90 87.975 87.975 90 85.485 90 z"-->
+<!--                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(237,233,233); fill-rule: nonzero; opacity: 1;"-->
+<!--                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />-->
+<!--                                    <path-->
+<!--                                        d="M 85.485 24.773 H 54.187 c -2.489 0 -4.515 -2.025 -4.515 -4.515 V 4.514 C 49.672 2.025 51.697 0 54.187 0 h 31.299 C 87.975 0 90 2.025 90 4.514 v 15.745 C 90 22.748 87.975 24.773 85.485 24.773 z"-->
+<!--                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(94,203,88); fill-rule: nonzero; opacity: 1;"-->
+<!--                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />-->
+<!--                                </g>-->
+<!--                            </svg>-->
+<!--                            <p>Dashboard</p>-->
+<!--                        </a>-->
+<!--                    </div>-->
+                </div>
+            </div>
+            <div class="ListofPoll">
+                {% for i in data %}
+                <div class="item1">
+                    <div class="title">
+                        <p>{{ i[1] }}</p>
+                    </div>
+                    <div class="right">
+                        <div class="link">
+                            <a href="{{ url_for('Generatinglink',id=i[0]) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="20"
+                                     viewBox="0 0 350 350" xml:space="preserve">
+                                    <desc>Created with Fabric.js 1.7.22</desc>
+                                    <defs>
+                                    </defs>
+                                    <g id="icon"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                                        transform="translate(-1.9444444444444287 -1.9444444444444287) scale(3.89 3.89)">
+                                        <path
+                                            d="M 41.242 69.371 l -8.953 8.954 c -0.288 0.287 -0.627 0.331 -0.803 0.331 c -0.176 0 -0.515 -0.044 -0.803 -0.332 L 11.676 59.317 c -0.443 -0.443 -0.443 -1.163 0 -1.606 l 24.98 -24.98 c 0.288 -0.288 0.626 -0.331 0.802 -0.331 h 0 c 0.176 0 0.515 0.043 0.803 0.331 l 16.362 16.362 l 8.025 -8.025 L 46.287 24.707 c -4.869 -4.869 -12.789 -4.868 -17.657 0 L 3.65 49.686 c -4.867 4.868 -4.867 12.789 0 17.656 l 19.007 19.007 c 2.434 2.434 5.631 3.65 8.828 3.65 c 3.197 0 6.394 -1.217 8.827 -3.65 l 13.961 -13.961 C 50.063 74.716 46.357 73.631 41.242 69.371 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                        <path
+                                            d="M 48.758 20.629 l 8.953 -8.954 c 0.288 -0.287 0.627 -0.331 0.803 -0.331 c 0.176 0 0.515 0.044 0.803 0.332 l 19.007 19.007 c 0.443 0.443 0.443 1.163 0 1.606 l -24.98 24.98 c -0.288 0.288 -0.626 0.331 -0.802 0.331 h 0 c -0.176 0 -0.515 -0.043 -0.803 -0.331 L 35.377 40.907 l -8.025 8.025 l 16.362 16.361 c 4.869 4.869 12.789 4.868 17.657 0 l 24.98 -24.979 c 4.867 -4.868 4.867 -12.789 0 -17.656 L 67.342 3.651 C 64.908 1.217 61.711 0 58.514 0 c -3.197 0 -6.394 1.217 -8.827 3.65 L 35.725 17.611 C 39.937 15.284 43.643 16.369 48.758 20.629 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                    </g>
+                                </svg>
+                                <p>Get Link</p>
+                            </a>
+                        </div>
+                        <div class="spe"></div>
+                        <div class="statistics">
+                            <a href="{{ url_for('Statistic',uname=i[2],id=i[0]) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="20"
+                                    viewBox="0 0 350 350" xml:space="preserve">
+                                    <g id="icon"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                                        transform="translate(-1.9444444444444287 -1.9444444444444287) scale(3.89 3.89)">
+                                        <path
+                                            d="M 40.135 90 h -8.782 c -1.519 0 -2.75 -1.231 -2.75 -2.75 V 45.381 c 0 -1.519 1.231 -2.75 2.75 -2.75 h 8.782 c 1.519 0 2.75 1.231 2.75 2.75 V 87.25 C 42.885 88.769 41.654 90 40.135 90 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                        <path
+                                            d="M 58.647 90 h -8.782 c -1.519 0 -2.75 -1.231 -2.75 -2.75 V 31.449 c 0 -1.519 1.231 -2.75 2.75 -2.75 h 8.782 c 1.519 0 2.75 1.231 2.75 2.75 V 87.25 C 61.397 88.769 60.165 90 58.647 90 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                        <path
+                                            d="M 21.624 90 h -8.782 c -1.519 0 -2.75 -1.231 -2.75 -2.75 V 59.313 c 0 -1.519 1.231 -2.75 2.75 -2.75 h 8.782 c 1.519 0 2.75 1.231 2.75 2.75 V 87.25 C 24.374 88.769 23.142 90 21.624 90 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                        <path
+                                            d="M 77.158 90 h -8.782 c -1.519 0 -2.75 -1.231 -2.75 -2.75 V 17.517 c 0 -1.519 1.231 -2.75 2.75 -2.75 h 8.782 c 1.519 0 2.75 1.231 2.75 2.75 V 87.25 C 79.908 88.769 78.677 90 77.158 90 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                        <path
+                                            d="M 67.773 17.977 h 18.183 c 1.787 0 2.682 -2.258 1.418 -3.578 L 74.185 0.614 c -0.783 -0.819 -2.053 -0.819 -2.836 0 L 58.16 14.398 c -1.264 1.321 -0.369 3.578 1.418 3.578 L 67.773 17.977"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                    </g>
+                                </svg>
+                                <p>Statistics</p>
+                            </a>
+                        </div><div class="spe"></div>
+                        <div class="view">
+                            <a href="{{ url_for('viewpoll',id= i[0],uname = uname) }}" >
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="25"
+                                    viewBox="0 0 350 350" xml:space="preserve">
+                                    <g id="icon"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                                        transform="translate(-1.9444444444444287 -1.9444444444444287) scale(3.89 3.89)">
+                                        <path
+                                            d="M 86.349 41.461 L 86.349 41.461 C 58.912 18.354 31.089 18.353 3.653 41.46 C 2.609 42.339 2.01 43.63 2.01 45 s 0.599 2.66 1.643 3.54 C 17.371 60.093 31.186 65.869 45 65.869 s 27.63 -5.776 41.349 -17.33 C 87.392 47.66 87.99 46.37 87.99 45 S 87.392 42.34 86.349 41.461 z M 45 59.843 c -8.185 0 -14.843 -6.658 -14.843 -14.843 S 36.815 30.157 45 30.157 S 59.843 36.815 59.843 45 S 53.185 59.843 45 59.843 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                        <circle cx="44.997" cy="44.997" r="8.887"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform="  matrix(1 0 0 1 0 0) " />
+                                        <path
+                                            d="M 45 17.497 c -1.657 0 -3 -1.343 -3 -3 V 3 c 0 -1.657 1.343 -3 3 -3 c 1.657 0 3 1.343 3 3 v 11.497 C 48 16.153 46.657 17.497 45 17.497 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                        <path
+                                            d="M 59.104 20.536 c -0.48 0 -0.968 -0.116 -1.421 -0.36 c -1.458 -0.787 -2.003 -2.606 -1.217 -4.064 l 4.883 -9.055 c 0.785 -1.458 2.604 -2.004 4.064 -1.217 c 1.458 0.787 2.003 2.606 1.217 4.064 l -4.883 9.055 C 61.206 19.964 60.172 20.536 59.104 20.536 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                        <path
+                                            d="M 30.895 20.536 c -1.067 0 -2.101 -0.571 -2.643 -1.577 l -4.883 -9.055 c -0.786 -1.458 -0.242 -3.278 1.217 -4.064 c 1.458 -0.786 3.277 -0.241 4.064 1.217 l 4.883 9.055 c 0.786 1.458 0.242 3.278 -1.217 4.064 C 31.864 20.42 31.376 20.536 30.895 20.536 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                        <path
+                                            d="M 45 90 c -1.657 0 -3 -1.343 -3 -3 V 75.503 c 0 -1.657 1.343 -3 3 -3 c 1.657 0 3 1.343 3 3 V 87 C 48 88.657 46.657 90 45 90 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                        <path
+                                            d="M 63.993 84.521 c -1.067 0 -2.102 -0.571 -2.644 -1.577 l -4.883 -9.056 c -0.786 -1.458 -0.241 -3.278 1.217 -4.064 c 1.459 -0.786 3.278 -0.242 4.064 1.217 l 4.883 9.056 c 0.786 1.458 0.241 3.278 -1.217 4.064 C 64.961 84.405 64.474 84.521 63.993 84.521 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                        <path
+                                            d="M 26.007 84.521 c -0.481 0 -0.968 -0.116 -1.421 -0.36 c -1.458 -0.786 -2.003 -2.606 -1.217 -4.064 l 4.883 -9.056 c 0.787 -1.459 2.606 -2.002 4.064 -1.217 c 1.458 0.786 2.003 2.606 1.217 4.064 l -4.883 9.056 C 28.108 83.95 27.075 84.521 26.007 84.521 z"
+                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                    </g>
+                                </svg>
+                                <p>View</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="right">
+                <div class="button">
+                    <p>Logout</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

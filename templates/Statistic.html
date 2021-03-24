@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistic</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Statistic.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="left">
+                <p>Polling Web App</p>
+            </div>
+        </div>
+        <div class="main">
+            <div class="listres">
+                <table border="1">
+                    <tr>
+                        <th>Username</th>
+                        <th>Answer</th>
+                        <th>Correct/Not</th>
+                    </tr>
+                    {% for i in data %}
+                        <tr>
+                            <td>{{i[3]}}</td>
+                            <td>{{i[2]}}</td>
+                            <td>{{i[5]}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="canvas">
+                <div class="line">
+                    <canvas id="myLine" height="50"></canvas>
+                </div>
+                <div class="pie">
+                    <canvas id="myChart" height="50"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{labels}}
+
+    <script type="text/javascript">
+
+    let list_data = {{ labels | tojson }};
+    let list_data1 = {{ new_data | tojson }};
+
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ["Correct", "Wrong"],
+                datasets: [
+                    {
+                        data: [{{correct}}, {{wrong}}],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 1)','rgba(255, 99, 132, 1)',
+                        ],
+
+                        borderColor: [
+                            'rgba(255,255,255,1)'
+                        ],
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+            }
+        });
+        var ctx1 = document.getElementById("myLine");
+            var myChart1 = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: list_data,
+                    datasets: [
+                        {
+                            data: list_data1,
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 1)',
+                            ],
+                            borderColor: [
+                                'rgba(255,255,255,1)'
+                            ],
+                        }
+                    ]
+                },
+            });
+
+    </script>
+</body>
+</html>

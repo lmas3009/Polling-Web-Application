@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Blinker&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Blinker', sans-serif;
+}
+
+.header {
+  height: 50px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: aquamarine;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header .left {
+  float: left;
+  border: 1px solid;
+  padding: 5px;
+}
+
+.header .left p {
+  font-size: 20px;
+}
+
+.header .right {
+  float: right;
+  background-color: aliceblue;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.header .right a {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+.main {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 75vh;
+}
+
+.main .content p {
+  width: 400px;
+  font-size: 20px;
+}
+
+.main .content p strong {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+  .main {
+    display: block;
+  }
+  .main .logo {
+    width: 100%;
+    place-items: center;
+    display: -ms-grid;
+    display: grid;
+  }
+  .main .logo img {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 350px;
+  }
+  .main .content {
+    text-align: center;
+  }
+  .main .content p {
+    width: 100%;
+  }
+}
+
+.getstart {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.getstart a {
+  text-decoration: none;
+}
+
+.getstart a .button {
+  width: 120px;
+  height: 40px;
+  background-color: #00b6ae;
+  color: white;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  font-size: 20px;
+}
+/*# sourceMappingURL=index.css.map */

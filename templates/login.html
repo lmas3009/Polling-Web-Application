@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Polling Web App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Login_Register.css') }}">
+</head>
+
+<body>
+    <div class="main">
+        <div class="left">
+            <p>Polling Web Application</p>
+            <img src="static/images/img2.png" alt="">
+        </div>
+        <div class="right">
+            <div class="title">
+                <p>Login</p>
+                <div class="subtitle">
+                    <p>It's Completely Free</p>
+                </div>
+            </div>
+            <form action="{{ url_for('verify_login') }}" method = "post" class="login">
+                <div class="label">
+                    <p>Username</p>
+                </div>
+                <input type="text" name="username" placeholder="Username"><br>
+                <div class="label">
+                    <p>Password</p>
+                </div>
+                <input type="password" name="password" placeholder="Password"><br>
+                <div class="button">
+                    <input type="submit" name="login" class="login" value="Login">
+                </div>
+                <sub class="sub">
+                    <a href="{{ url_for('register') }}">
+                        <p>Not Have An Account?</p>
+                    </a>
+                </sub>
+            </form>
+            {{error}}
+        </div>
+    </div>
+
+
+</body>
+
+</html>

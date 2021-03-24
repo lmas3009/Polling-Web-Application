@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polling Web Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Index.css') }}">
+</head>
+<body>
+    <div class="header">
+        <div class="left">
+            <p>Polling Web App</p>
+        </div>
+        <div class="right">
+            <a href="{{ url_for('register')}}">
+                <div class="button">
+                    <p>Login/Register</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="logo">
+            <img src="static/images/img2.png" alt="">
+        </div>
+        <div class="content">
+            <p>You can <strong>Create</strong>, <strong>Update</strong>, <strong>Delete</strong> your Poll. You can also share the generated link to your friends/students, so that they can answer to your poll.
+                You can also set up the time to end poll. You can also get the statistics for each poll in the form of graphs.
+            </p>
+        </div>
+    </div>
+
+    <div class="getstart">
+        <a href="#">
+            <div class="button">
+                <p>Get Started</p>
+            </div>
+        </a>
+    </div>
+
+
+
+</body>
+</html>

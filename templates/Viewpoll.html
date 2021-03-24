@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Poll</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/view.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="left">
+                <p>Polling Web App</p>
+            </div>
+        </div>
+        <div class="main">
+            <div class="card">
+                <div class="cardinfo">
+                    <div class="author">
+                        <p>{{uname}}</p>
+                    </div>
+                    <div class="title">
+                        <p>{{data[1]}}</p>
+                    </div>
+                    <div class="cardpollquestion">
+                        <ul>
+                            <form action="{{ url_for('updatePoll',id=id) }}" method="post">
+                                <li>
+                                    <input type="text" name="opt1" value="{{data[2]}}">
+                                </li>
+                                <li>
+                                    <input type="text" name="opt2" value="{{data[3]}}">
+                                </li>
+                                <li>
+                                    <input type="text" name="opt3" value="{{data[4]}}">
+                                </li>
+                                <li>
+                                    <input type="text" name="opt4" value="{{data[5]}}">
+                                </li>
+                                <label>Answer</label>
+                                <li>
+                                    <input type="text" name="ans" value="{{data[6]}}">
+                                </li>
+                                <div class="btns">
+                                    <a href="{{ url_for('home') }}" class="clsbutton">Close</a>
+                                    <input type="submit" value="Update your poll" name="submit" class="button">
+                                    <a href="{{ url_for('delete',id=id,uuid=uuid,uname = uname) }}" class="delbutton">Delete your poll</a>
+                                </div>
+                            </form>
+                        </ul>
+                    </div>
+                </div>
+                <div class="cardpollres">
+                    <div class="sep"></div>
+                    <a href="#">
+                    </a>
+                    <div class="voteres">
+                        <p>Vote Count</p>
+                        <strong>{{ votecount }}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function displayRadioValue() {
+            var ele = document.getElementsByName('pollp');
+
+            for (i = 0; i < ele.length; i++) {
+                if (ele[i].checked)
+                    console.log(ele[i].value);
+            }
+        }
+        function myFunction() {
+            var copyText = document.getElementById("myInput");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999)
+            document.execCommand("copy");
+            alert("Copied to Clipboard");
+        }
+    </script>
+</body>
+
+</html>
+
+
+<!--    <table border="1">-->
+<!--        <tr>-->
+<!--            <th>{{ data[1] }}</th>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>{{ data[2] }}</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>{{ data[3] }}</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>{{ data[4] }}</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>{{ data[5] }}</td>-->
+<!--        </tr>-->
+
+<!--        <tr>-->
+<!--            <th>Respective Answer</th>-->
+<!--        </tr>-->
+
+<!--        <tr>-->
+<!--            <td>{{ data[6] }}</td>-->
+<!--        </tr>-->
+<!--    </table>-->
