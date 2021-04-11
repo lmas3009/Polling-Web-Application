@@ -391,15 +391,14 @@ def shareablelink(id, _uuid, uname):
     )
 
 
-@app.route("/answer/<uname>/<question>", methods=["POST"])
-def answer(uname, question):
+@app.route("/answer/<uname>/<id>", methods=["POST"])
+def answer(uname, id):
     if request.method == "POST":
         value = request.form["pollq"]
         name = request.form["name"]
 
         response1 = requests.get(
-            "https://polling-web-application.herokuapp.com/pollquestion_question/"
-            + question,
+            "https://polling-web-application.herokuapp.com/pollquestion_id/" + id,
         )
         print(response1.status_code)
         new_data = json.loads(response1.content)
@@ -420,7 +419,7 @@ def answer(uname, question):
                     "Admin": uname,
                     "Answer": value,
                     "Username": name,
-                    "Question": question,
+                    "Question": new_data[0]["Question"],
                     "VeriAnswer": correct,
                 },
             )
