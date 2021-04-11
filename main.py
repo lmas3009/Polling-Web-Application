@@ -186,7 +186,8 @@ def verify_login():
                 + "/"
                 + password
             )
-            if response1:
+            data = json.loads(response1.content)
+            if data != []:
                 session["user"] = uname
                 return redirect("/home")
         except Exception as e:

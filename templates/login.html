@@ -34,13 +34,13 @@
                 <div class="button">
                     <input type="submit" name="login" class="login" value="Login">
                 </div>
+                <p>{{error}}</p>    
                 <sub class="sub">
                     <a href="{{ url_for('register') }}">
                         <p>Not Have An Account?</p>
                     </a>
                 </sub>
             </form>
-            {{error}}
         </div>
     </div>
 
