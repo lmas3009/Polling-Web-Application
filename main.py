@@ -389,7 +389,12 @@ def shareablelink(id, _uuid, uname):
         print(e)
 
     return render_template(
-        "shareable.html", data=data, len=len(data), votecount=votecount, url=url
+        "shareable.html",
+        data=data,
+        len=len(data),
+        votecount=votecount,
+        url=url,
+        uname=uname,
     )
 
 
