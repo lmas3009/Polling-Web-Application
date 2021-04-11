@@ -55,14 +55,15 @@ def Statistic(uname, id):
         "https://polling-web-application.herokuapp.com/pollquestion_id/" + id
     )
     new_data = json.loads(response.content)
-
+    print(new_data)
     response1 = requests.get(
         "https://polling-web-application.herokuapp.com/pollanswer/"
         + session["user"]
         + "/"
-        + new_data[0]["Question"]
+        + new_data[0]["_id"]
     )
     new_data1 = json.loads(response1.content)
+    print(new_data1)
     correct = wrong = 0
     data = []
     newdata = []
@@ -246,9 +247,6 @@ def add_poll():
 @app.route("/viewpoll/<id>/<uname>")
 def viewpoll(id, uname):
 
-    cmd = "SELECT * FROM `pollquestion` WHERE `Id`=%s and `username`=%s"
-    val = (id, uname)
-
     response = requests.get(
         "https://polling-web-application.herokuapp.com/pollquestion/"
         + session["user"]
@@ -257,6 +255,7 @@ def viewpoll(id, uname):
     )
     new_data = json.loads(response.content)
     data = []
+    print(new_data)
     votecount = 0
     for i in new_data:
         for j in i:
@@ -265,7 +264,7 @@ def viewpoll(id, uname):
 
         response1 = requests.get(
             "https://polling-web-application.herokuapp.com/pollanswer/"
-            + new_data[0]["Question"],
+            + new_data[0]["_id"],
         )
         new_data1 = json.loads(response1.content)
         votecount = 0
@@ -273,8 +272,8 @@ def viewpoll(id, uname):
         if new_data1:
             votecount = len(new_data1)
 
-    except:
-        return render_template("404.html")
+    except Exception as e:
+        return str(e)
     return render_template(
         "Viewpoll.html", data=data, votecount=votecount, id=id, uname=uname, uuid=_uuid
     )
@@ -355,36 +354,39 @@ def Generatinglink(id):
 
 @app.route("/shareablelink/<id>/<uname>/<_uuid>")
 def shareablelink(id, _uuid, uname):
-    url = "shareablelink/" + id + "/" + uname + "/" + _uuid
+    try:
+        url = "shareablelink/" + id + "/" + uname + "/" + _uuid
 
-    response = requests.get(
-        "https://polling-web-application.herokuapp.com/pollquestion/"
-        + uname
-        + "/"
-        + id,
-    )
-    new_data = json.loads(response.content)
-    data = []
+        response = requests.get(
+            "https://polling-web-application.herokuapp.com/pollquestion/"
+            + uname
+            + "/"
+            + id,
+        )
+        new_data = json.loads(response.content)
+        data = []
 
-    response1 = requests.get(
-        "https://polling-web-application.herokuapp.com/pollanswer/"
-        + new_data[0]["Question"],
-    )
-    new_data1 = json.loads(response1.content)
+        response1 = requests.get(
+            "https://polling-web-application.herokuapp.com/pollanswer/"
+            + new_data[0]["_id"],
+        )
+        new_data1 = json.loads(response1.content)
 
-    votecount = 0
+        votecount = 0
 
-    if new_data1:
-        votecount = len(new_data1)
+        if new_data1:
+            votecount = len(new_data1)
 
-    for i in new_data:
-        data.append(i["_id"])
-        data.append(i["Question"])
-        data.append(i["Option1"])
-        data.append(i["Option2"])
-        data.append(i["Option3"])
-        data.append(i["Option4"])
-        data.append(i["Username"])
+        for i in new_data:
+            data.append(i["_id"])
+            data.append(i["Question"])
+            data.append(i["Option1"])
+            data.append(i["Option2"])
+            data.append(i["Option3"])
+            data.append(i["Option4"])
+            data.append(i["Username"])
+    except Exception as e:
+        print(e)
 
     return render_template(
         "shareable.html", data=data, len=len(data), votecount=votecount, url=url
@@ -421,6 +423,7 @@ def answer(uname, id):
                     "Username": name,
                     "Question": new_data[0]["Question"],
                     "VeriAnswer": correct,
+                    "QuestionId": new_data[0]["_id"],
                 },
             )
             print("Status code: ", response.status_code)
@@ -459,3 +462,7 @@ def Dashboard():
         labels=labels,
         values=values,
     )
+
+
+if __name__ == "__main__":
+    app.run()
