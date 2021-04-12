@@ -6,7 +6,7 @@ import requests
 from datetime import date
 import httplib2
 import urllib
-
+from cryptography.fernet import Fernet
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -132,6 +132,15 @@ def verify_register():
         fullname = request.form["fullname"]
         email = request.form["emailid"]
         password = request.form["password"]
+        f = open("key.txt", "r")
+        key = f.readline()
+        key = key.lower()
+        enc_pass = ""
+        for i in password:
+            if i in key:
+                num = key.find(i)
+                num += 10 + 4 // 2 * 2
+                enc_pass += key[num]
 
         response = requests.get(
             "https://polling-web-application.herokuapp.com/login",
@@ -139,23 +148,24 @@ def verify_register():
         data = json.loads(response.content)
         length = len(data)
         if length != 0:
+            new_data = []
             for i in range(len(data)):
-                if (uname != data[i]["Username"] or uname == "") and (
-                    email != data[i]["EmailId"] or email == ""
-                ):
-                    response = requests.post(
-                        "https://polling-web-application.herokuapp.com/login_add",
-                        json={
-                            "Username": uname,
-                            "EmailId": email,
-                            "FullName": fullname,
-                            "Password": password,
-                        },
-                    )
-                    print("Status code: ", response.status_code)
-                    session["user"] = uname
-                else:
-                    return "Name or Email is already Used"
+                new_data.append(data[i]["Username"])
+            if uname not in new_data or uname == "" or email == "":
+                response = requests.post(
+                    "https://polling-web-application.herokuapp.com/login_add",
+                    json={
+                        "Username": uname,
+                        "EmailId": email,
+                        "FullName": fullname,
+                        "Password": enc_pass,
+                    },
+                )
+                print("Status code: ", response.status_code)
+                session["user"] = uname
+
+            else:
+                return "Name or Email is already Used"
         else:
             response = requests.post(
                 "https://polling-web-application.herokuapp.com/login_add",
@@ -163,7 +173,7 @@ def verify_register():
                     "Username": uname,
                     "EmailId": email,
                     "FullName": fullname,
-                    "Password": password,
+                    "Password": enc_pass,
                 },
             )
             print("Status code: ", response.status_code)
@@ -179,12 +189,22 @@ def verify_login():
         password = request.form["password"]
 
         # print(uname, password)
+
+        f = open("key.txt", "r")
+        key = f.readline()
+        key = key.lower()
+        enc_pass = ""
+        for i in password:
+            if i in key:
+                num = key.find(i)
+                num += 10 + 4 // 2 * 2
+                enc_pass += key[num]
         try:
             response1 = requests.get(
                 "https://polling-web-application.herokuapp.com/login/"
                 + uname
                 + "/"
-                + password
+                + enc_pass
             )
             data = json.loads(response1.content)
             if data != []:
