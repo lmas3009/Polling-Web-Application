@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Poll</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/view.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/viewpoll_file.css') }}">
 </head>
 
 <body>
     <div class="container">
-        <div class="header">
+        <div class="header" style="background-color: {{color[0]}};">
             <div class="left">
                 <p>Polling Web App</p>
             </div>
@@ -28,20 +28,20 @@
                     <div class="cardpollquestion">
                         <ul>
                             <form action="{{ url_for('updatePoll',id=id) }}" method="post">
-                                <li>
+                                <li style="background-color: {{color[0]}};">
                                     <input type="text" name="opt1" value="{{data[2]}}">
                                 </li>
-                                <li>
+                                <li style="background-color: {{color[1]}};">
                                     <input type="text" name="opt2" value="{{data[3]}}">
                                 </li>
-                                <li>
+                                <li style="background-color: {{color[2]}};">
                                     <input type="text" name="opt3" value="{{data[4]}}">
                                 </li>
-                                <li>
+                                <li style="background-color: {{color[3]}};">
                                     <input type="text" name="opt4" value="{{data[5]}}">
                                 </li>
                                 <label>Answer</label>
-                                <li>
+                                <li style="background-color: {{color[4]}};">
                                     <input type="text" name="ans" value="{{data[6]}}">
                                 </li>
                                 <div class="btns">
@@ -60,6 +60,23 @@
                     <div class="voteres">
                         <p>Vote Count</p>
                         <strong>{{ votecount }}</strong>
+                    </div>
+                    <div class="visi">
+                        <div class="title">
+                            <p>Your poll is in <strong>{{veri}}</strong> mode</p>
+                        </div>
+                        <div class="vipoll">
+                            <a href="{{ url_for('public',id=id)}}" style="text-decoration: none; cursor: pointer;">
+                                <div class="public">
+                                    <p>Public</p>
+                                </div>
+                            </a>
+                            <a href="{{ url_for('private',id=id)}}" style="text-decoration: none; cursor: pointer;">
+                                <div class="private">
+                                    <p>Private</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

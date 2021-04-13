@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Polling Web Application</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/Home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_file.css') }}">
 <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <div class="header" style="background-color: {{color[0]}};">
             <div class="left">
                 <p>Polling Web App</p>
             </div>
@@ -87,14 +87,14 @@
                 </div>
             </div>
             <div class="ListofPoll">
-                {% for i in data %}
-                <div class="item1">
+                {% for i in range(len) %}
+                <div class="item1" style="background-color: {{color[i]}};">
                     <div class="title">
-                        <p>{{ i[1] }}</p>
+                        <p>{{ data[i][1] }}</p>
                     </div>
                     <div class="right">
                         <div class="link">
-                            <a href="{{ url_for('Generatinglink',id=i[0]) }}">
+                            <a href="{{ url_for('Generatinglink',id=data[i][0]) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="20"
                                      viewBox="0 0 350 350" xml:space="preserve">
                                     <desc>Created with Fabric.js 1.7.22</desc>
@@ -118,7 +118,7 @@
                         </div>
                         <div class="spe"></div>
                         <div class="statistics">
-                            <a href="{{ url_for('Statistic',uname=i[2],id=i[0]) }}">
+                            <a href="{{ url_for('Statistic',uname=data[i][2],id=data[i][0]) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="20"
                                     viewBox="0 0 350 350" xml:space="preserve">
                                     <g id="icon"
@@ -150,7 +150,7 @@
                             </a>
                         </div><div class="spe"></div>
                         <div class="view">
-                            <a href="{{ url_for('viewpoll',id= i[0],uname = uname) }}" >
+                            <a href="{{ url_for('viewpoll',id= data[i][0],uname = uname) }}" >
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="25"
                                     viewBox="0 0 350 350" xml:space="preserve">
                                     <g id="icon"

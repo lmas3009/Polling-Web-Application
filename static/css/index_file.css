@@ -1,0 +1,290 @@
+@import url("https://fonts.googleapis.com/css2?family=Blinker&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Blinker', sans-serif;
+}
+
+.header {
+  height: 50px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: aquamarine;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header .left {
+  float: left;
+  border: 1px solid;
+  padding: 5px;
+}
+
+.header .left p {
+  font-size: 20px;
+}
+
+.header .right {
+  float: right;
+  background-color: aliceblue;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.header .right a {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+.main {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 75vh;
+}
+
+.main .content p {
+  width: 400px;
+  font-size: 20px;
+}
+
+.main .content p strong {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+  .main {
+    display: block;
+  }
+  .main .logo {
+    width: 100%;
+    place-items: center;
+    display: -ms-grid;
+    display: grid;
+  }
+  .main .logo img {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 350px;
+  }
+  .main .content {
+    text-align: center;
+  }
+  .main .content p {
+    width: 100%;
+  }
+}
+
+.getstart {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.getstart a {
+  text-decoration: none;
+}
+
+.getstart a .button {
+  width: 150px;
+  height: 40px;
+  background-color: #00b6ae;
+  color: white;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.getstart a .button p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.public {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.public .publicpoll {
+  width: 60%;
+}
+
+.public .publicpoll .title {
+  margin-top: 20px;
+}
+
+.public .publicpoll .title p {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.public .publicpoll .subtitle {
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.public .publicpoll .subtitle p {
+  font-size: 20px;
+  color: gray;
+}
+
+.public .publicpoll .pollcards {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.public .publicpoll .pollcards .card {
+  margin: 20px;
+  min-height: 100px;
+  max-height: 300px;
+  width: 120%;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 3px 5px 10px #f3efef;
+          box-shadow: 0px 3px 5px 10px #f3efef;
+}
+
+.public .publicpoll .pollcards .card .votecount {
+  width: 100%;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  height: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.public .publicpoll .pollcards .card .votecount .count {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 40px;
+  width: 80px;
+  border: 3px solid lightgreen;
+  background-color: #f6fffa;
+  border-radius: 20px;
+  margin-top: -20px;
+}
+
+.public .publicpoll .pollcards .card .votecount .count p {
+  font-size: 18px;
+  color: #2d5688;
+}
+
+.public .publicpoll .pollcards .card .cardinfo {
+  margin-left: 40px;
+}
+
+.public .publicpoll .pollcards .card .cardinfo .author {
+  width: 100px;
+  height: 30px;
+  background-color: #ddecff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.public .publicpoll .pollcards .card .cardinfo .author p {
+  color: #2d5688;
+  font-size: 18px;
+}
+
+.public .publicpoll .pollcards .card .cardinfo .question {
+  margin: 10px;
+  max-width: 80%;
+  margin-right: 40px;
+}
+
+.public .publicpoll .pollcards .card .cardinfo .question p {
+  font-size: 30px;
+}
+
+.public .publicpoll .pollcards .card .cardinfo .polltime {
+  margin: 10px;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.public .publicpoll .pollcards .card .cardinfo .polltime .poll {
+  height: 30px;
+  width: 70px;
+  background-color: green;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+}
+
+.public .publicpoll .pollcards .card .cardinfo .polltime .poll p {
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}
+
+.public .publicpoll .pollcards .card .cardinfo .polltime .time {
+  margin: 10px;
+}
+
+.public .publicpoll .pollcards .card .cardinfo .polltime .time p {
+  color: gray;
+  font-size: 18px;
+}
+/*# sourceMappingURL=index.css.map */

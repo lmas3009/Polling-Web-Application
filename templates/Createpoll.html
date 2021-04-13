@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Poll</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/createpoll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create_poll_file.css') }}">
 </head>
 
 <body>
     <div class="container">
-        <div class="header">
-            <div class="left">
+        <div class="header" style="background-color: {{color[0]}};">
+            <div class="left" style="color: white; border: 1ps solid white;">
                 <p>Polling Web App</p>
             </div>
         </div>
@@ -28,35 +28,59 @@
                     </div>
                     <div class="cardpollquestion">
                         <ul>
-                                <li>
+                                <li style="background-color: {{color[0]}};">
                                     <input type="text" name="opt1"  placeholder="Option1">
                                 </li>
-                                <li>
+                                <li style="background-color: {{color[1]}};">
                                     <input type="text" name="opt2"  placeholder="Option2">
                                 </li>
-                                <li>
+                                <li style="background-color: {{color[2]}};">
                                     <input type="text" name="opt3" placeholder="Option3">
                                 </li>
-                                <li>
+                                <li style="background-color: {{color[3]}};">
                                     <input type="text" name="opt4"  placeholder="Option4">
                                 </li>
                                 <label>Answer</label>
-                                <li>
+                                <li style="background-color: {{color[4]}};">
                                     <input type="text" name="ans" placeholder="Respective Answer or Keep Default as Any One" value="Any One">
                                 </li>
+                                <label class="comment">You want to make the poll private</label>
+                                <label class="veri" style="background-color: {{color[2]}};">
+                                    <input type="checkbox" name="private" id="">
+                                    <div class="private">
+                                        <p>Private</p>
+                                    </div>
+                                </label>
                                 <div class="btns">
                                     <input type="submit" value="Create A Poll" name="submit" class="button">
                                     <a href="{{ url_for('home') }}" class="clsbutton">Cancel</a>
+                                    
                                 </div>
                         </ul>
                     </div>
-                    </form>
-                </div>
+                </form>
+            </div>
+            <div class="needtofollow">
+                <ul>
+                    <p>Need to Follow</p>
+                    <li>
+                        You can add any type of text, emojies etc..
+                    </li>
+                    <li>
+                        If all the options are correct use 'Any One'.
+                    </li>
+                    <li>
+                        By default the poll will be in public to change click on private.
+                    </li>
+                    <li>
+                        If you are in private mode, generate link and send it.
+                    </li>
+                </ul>
+            </div>
+            </div>
             </div>
         </div>
-    </div>
-
-</body>
-
+            
+    </body>
+            
 </html>
-

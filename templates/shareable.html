@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generated Link</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/Shareab.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shareable_file.css') }}">
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="left">
+        <div class="header" style="background-color: {{color[0]}};">
+            <div class="left" style="color: white; border: 1px solid white;">
                 <p>Polling Web App</p>
             </div>
         </div>
@@ -28,7 +28,7 @@
                             <form action="{{ url_for('answer',uname=uname,id=data[0]) }}" method="post">
                             {% for i in range(2,len-1) %}
                                 {% if(data[i]!="") %}
-                                    <li>
+                                    <li style="background-color: {{color[i-1]}};">
                                         <input type="radio" name="pollq" value="{{data[i]}}"> <p>{{data[i]}}</p>
                                     </li>
                                 {% endif %}

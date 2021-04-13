@@ -6,7 +6,7 @@ import requests
 from datetime import date
 import httplib2
 import urllib
-
+import random
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -16,17 +16,48 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 # mycursor = mydb.cursor()
 
 
+color = open("color.txt", "r")
+colors = []
+for i in color.readlines():
+    colors.append(i)
+
 _uuid = uuid.uuid1()
 
 
 @app.route("/")
 def index():
+
+    res = requests.get(
+        "https://polling-web-application.herokuapp.com/pollquestion_veri/" + "public"
+    )
+    data = json.loads(res.content)
+    # print(data)
+    new_data = []
+    for i in data:
+        _data = []
+        _data.append(i["Username"])
+        _data.append(i["Question"])
+        url = (
+            "https://pollingwebapp.herokuapp.com/shareablelink/"
+            + i["_id"]
+            + "/"
+            + i["Username"]
+            + "/"
+            + i["uuid"]
+        )
+        _data.append(url)
+        _data.append(i["PollDate"])
+        new_data.append(_data)
+
+    # print(new_data)
     if "user" in session:
         return redirect("/home")
     else:
         print("Hello")
 
-    return render_template("index.html")
+    return render_template(
+        "index.html", color=random.choice(colors), data=new_data, len=len(new_data)
+    )
 
 
 @app.route("/register")
@@ -49,13 +80,37 @@ def logout():
     return redirect("/")
 
 
+@app.route("/public/<id>")
+def public(id):
+    try:
+        requests.get(
+            "https://polling-web-application.herokuapp.com/pollquestion_update_public/"
+            + id
+        )
+    except Exception as e:
+        print(e)
+    return redirect("/home")
+
+
+@app.route("/private/<id>")
+def private(id):
+    try:
+        requests.get(
+            "https://polling-web-application.herokuapp.com/pollquestion_update_private/"
+            + id
+        )
+    except Exception as e:
+        print(e)
+    return redirect("/home")
+
+
 @app.route("/Statistic/<uname>/<id>")
 def Statistic(uname, id):
     response = requests.get(
         "https://polling-web-application.herokuapp.com/pollquestion_id/" + id
     )
     new_data = json.loads(response.content)
-    print(new_data)
+    # print(new_data)
     response1 = requests.get(
         "https://polling-web-application.herokuapp.com/pollanswer/"
         + session["user"]
@@ -63,7 +118,7 @@ def Statistic(uname, id):
         + new_data[0]["_id"]
     )
     new_data1 = json.loads(response1.content)
-    print(new_data1)
+    # print(new_data1)
     correct = wrong = 0
     data = []
     newdata = []
@@ -72,7 +127,7 @@ def Statistic(uname, id):
 
     data.append(str(0))
     _data = sorted(list(set(data)))
-
+    color = random.choice(colors)
     for j in _data:
         count = 0
         for k in data:
@@ -96,20 +151,30 @@ def Statistic(uname, id):
         wrong=str(wrong),
         labels=_data,
         new_data=newdata,
+        color=color,
     )
 
 
 @app.route("/home")
 def home():
+    data = []
+    options = []
+    res = []
+    color_data = []
     try:
-        response = requests.get(
-            "https://polling-web-application.herokuapp.com/pollquestion/"
-            + session["user"],
-        )
-        new_data = json.loads(response.content)
-        data = []
-        options = []
-        res = []
+        try:
+
+            response = requests.get(
+                "https://polling-web-application.herokuapp.com/pollquestion/"
+                + session["user"],
+            )
+            new_data = json.loads(response.content)
+        except:
+            pass
+
+        for i in range(len(new_data)):
+            color_data.append(random.choice(colors))
+
         for i in new_data:
             items = items1 = []
             items.append(i["_id"])
@@ -121,7 +186,12 @@ def home():
         return redirect("/")
     # print(options)
     return render_template(
-        "home.html", data=data, uname=session["user"], options=options
+        "home.html",
+        data=data,
+        uname=session["user"],
+        options=options,
+        color=color_data,
+        len=len(data),
     )
 
 
@@ -217,7 +287,10 @@ def verify_login():
 
 @app.route("/create_poll")
 def create_poll():
-    return render_template("Createpoll.html", uname=session["user"])
+    color_data = []
+    for i in range(5):
+        color_data.append(random.choice(colors))
+    return render_template("Createpoll.html", uname=session["user"], color=color_data)
 
 
 @app.route("/add_poll", methods=["GET", "POST"])
@@ -229,8 +302,13 @@ def add_poll():
         option3 = request.form["opt3"]
         option4 = request.form["opt4"]
         answer = request.form["ans"]
-        print(question, option1, option2, option3, option4, answer)
+        private = request.form.get("private")
+        # print(question, option1, option2, option3, option4, answer)
         name = session["user"]
+
+        veri = "public"
+        if str(private) == "on":
+            veri = "private"
 
         # if option1 == "":
         #     option1 = "NULL"
@@ -255,6 +333,8 @@ def add_poll():
                     "Option4": option4,
                     "Answer": answer,
                     "Username": name,
+                    "Veri": veri,
+                    "uuid": "123",
                 },
             )
             print("Status code: ", response.status_code)
@@ -276,8 +356,11 @@ def viewpoll(id, uname):
     )
     new_data = json.loads(response.content)
     data = []
-    print(new_data)
+    veri = new_data[0]["Veri"]
     votecount = 0
+    color_data = []
+    for i in range(5):
+        color_data.append(random.choice(colors))
     for i in new_data:
         for j in i:
             data.append(i[j])
@@ -296,7 +379,14 @@ def viewpoll(id, uname):
     except Exception as e:
         return str(e)
     return render_template(
-        "Viewpoll.html", data=data, votecount=votecount, id=id, uname=uname, uuid=_uuid
+        "Viewpoll.html",
+        data=data,
+        votecount=votecount,
+        id=id,
+        uname=uname,
+        uuid=_uuid,
+        color=color_data,
+        veri=veri,
     )
 
 
@@ -370,7 +460,14 @@ def delete(id, uuid, uname):
 @app.route("/Generatinglink/<id>")
 def Generatinglink(id):
     _uuid = uuid.uuid1()
-    return redirect(url_for("shareablelink", id=id, _uuid=_uuid, uname=session["user"]))
+    return redirect(
+        url_for(
+            "shareablelink",
+            id=id,
+            _uuid=_uuid,
+            uname=session["user"],
+        )
+    )
 
 
 @app.route("/shareablelink/<id>/<uname>/<_uuid>")
@@ -393,8 +490,21 @@ def shareablelink(id, _uuid, uname):
         )
         new_data1 = json.loads(response1.content)
 
+        try:
+            requests.get(
+                "https://polling-web-application.herokuapp.com/pollquestion_link/"
+                + id
+                + "/"
+                + _uuid
+            )
+        except:
+            pass
+
         votecount = 0
 
+        color_data = []
+        for i in range(5):
+            color_data.append(random.choice(colors))
         if new_data1:
             votecount = len(new_data1)
 
@@ -416,6 +526,7 @@ def shareablelink(id, _uuid, uname):
         votecount=votecount,
         url=url,
         uname=uname,
+        color=color_data,
     )
 
 
@@ -433,7 +544,7 @@ def answer(uname, id):
 
         # today = date(2021,3,23)
         # today = date.today()
-        print(new_data)
+        # print(new_data)
         correct = "False"
         if new_data[0]["Answer"] == value:
             correct = "True"
@@ -489,6 +600,8 @@ def Dashboard():
         values=values,
     )
 
+
+color.close()
 
 if __name__ == "__main__":
     app.run()
