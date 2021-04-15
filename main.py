@@ -1,10 +1,9 @@
 from flask import *
 import uuid
-import pymysql as Mysql
 import requests
 
 from datetime import date
-import httplib2 
+import httplib2
 import urllib
 import random
 
@@ -64,14 +63,14 @@ def index():
 def register():
     if "user" in session:
         return redirect("/home")
-    return render_template("register.html",color = random.choice(colors))
+    return render_template("register.html", color=random.choice(colors))
 
 
 @app.route("/login")
 def login():
     if "user" in session:
         return redirect("/home")
-    return render_template("login.html",color = random.choice(colors))
+    return render_template("login.html", color=random.choice(colors))
 
 
 @app.route("/logout")
