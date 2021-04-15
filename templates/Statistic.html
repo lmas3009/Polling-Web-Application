@@ -7,6 +7,64 @@
     <title>Statistic</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/statistic_file.css') }}">
+
+    <style>
+        .table {
+            width: 100%;
+            border: 1px solid #eeeeee;
+            border-radius: 5px;
+        }
+
+        .table-header {
+            display: flex;
+            width: 100%;
+            padding: 18px 0;
+        }
+
+        .table-row {
+            display: flex;
+            width: 100%;
+            padding: 18px 0;
+        }
+        .table-row:nth-of-type(odd) {
+            background: #eeeeee;
+        }
+
+        .table-data,
+            .header__item {
+                flex: 1 1 20%;
+                text-align: center;
+            }
+
+        .header__item {
+            text-transform: uppercase;
+        }
+
+        .filter__link {
+            color: white;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+        .filter__link::after {
+            content: "";
+            position: absolute;
+            right: -18px;
+            color: white;
+            font-size: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .filter__link.desc::after {
+            content: "(desc)";
+        }
+        .filter__link.asc::after {
+            content: "(asc)";
+        }
+    </style>
+    
 </head>
 <body>
     <div class="container">
@@ -17,7 +75,27 @@
         </div>
         <div class="main">
             <div class="listres">
-                <table border="1">
+                <div class="container">
+                    <div class="table">
+                        <div class="table-header" style="background: {{color}};">
+                            <div class="header__item"><a id="name" class="filter__link" href="#">Username</a></div>
+                            <div class="header__item"><a id="nas" class="filter__link filter__link--number" href="#">Answer</a></div>
+                            <div class="header__item"><a id="veri" class="filter__link filter__link--number" href="#">Correct/Wrong</a></div>
+                        </div>
+                        <div class="table-content">
+                            {% for i in data %}
+                            <div class="table-row">
+                                <div class="table-data">{{i['Username']}}</div>
+                                <div class="table-data">{{i['Answer']}}</div>
+                                <div class="table-data">{{i['VeriAnswer']}}</div>
+                            </div>
+                            {% endfor %}
+                            
+                
+                        </div>
+                    </div>
+                </div>
+                <!-- <table border="1">
                     <tr>
                         <th>Username</th>
                         <th>Answer</th>
@@ -30,7 +108,7 @@
                             <td>{{i['VeriAnswer']}}</td>
                         </tr>
                     {% endfor %}
-                </table>
+                </table> -->
             </div>
             <div class="canvas">
                 <div class="line">
@@ -43,7 +121,6 @@
         </div>
     </div>
 
-    {{labels}}
 
     <script type="text/javascript">
 
