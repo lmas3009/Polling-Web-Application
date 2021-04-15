@@ -15,22 +15,22 @@
             <p>Polling Web Application</p>
             <img src="static/images/img2.png" alt="">
         </div>
-        <div class="right">
+        <div class="right" style="background-color: {{color}};">
             <div class="title">
                 <p>Login</p>
                 <div class="subtitle">
-                    <p>It's Completely Free</p>
+                    <p style="color: white;">It's Completely Free</p>
                 </div>
             </div>
             <form action="{{ url_for('verify_login') }}" method = "post" class="login">
                 <div class="label">
                     <p>Username</p>
                 </div>
-                <input type="text" name="username" placeholder="Username"><br>
+                <input type="text" name="username" placeholder="Username" style="background-color: white; border: 0.4px solid white;"><br>
                 <div class="label">
                     <p>Password</p>
                 </div>
-                <input type="password" name="password" placeholder="Password"><br>
+                <input type="password" name="password" placeholder="Password" style="background-color: white; border: 0.4px solid white;"><br>
                 <div class="button">
                     <input type="submit" name="login" class="login" value="Login">
                 </div>
