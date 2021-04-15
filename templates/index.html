@@ -6,6 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polling Web Application</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index_file.css') }}">
+    <style>
+        .footer {
+            width: 100%;
+            display: -ms-grid;
+            display: grid;
+            place-items: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .footer p {
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div class="header" style="background-color: {{color}}">
@@ -94,6 +109,10 @@
                 
             </div>
         </div>
+    </div>
+
+    <div class="footer">
+        <p>Created By <br> Aditi Reddy - 180330222 <br> Aravind Kumar - 180330110 <br> &copy; 2021 from 🤍 FTD</p>
     </div>
 
 
