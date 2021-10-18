@@ -40,3 +40,7 @@ You can Create/Update/Delete a poll. You can also share this poll to your studen
 
 ## After Updation Shareable Link Page
 ![Screenshot (192)](https://user-images.githubusercontent.com/60876387/112317173-cbca0500-8cd1-11eb-8607-f61e0b356115.png)
+
+
+## Contribution
+Feel free to raise the issue 🚀🌟
