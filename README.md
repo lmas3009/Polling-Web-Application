@@ -42,5 +42,17 @@ You can Create/Update/Delete a poll. You can also share this poll to your studen
 ![Screenshot (192)](https://user-images.githubusercontent.com/60876387/112317173-cbca0500-8cd1-11eb-8607-f61e0b356115.png)
 
 
-## Contribution
-Feel free to raise the issue 🚀🌟
+## Open for Contribution 🚀
+
+Fork the Project
+
+Add Your Code
+
+Commit your Changes
+
+Push to the Branch
+
+Open a Pull Request
+
+
+## Made by Aravind Kumar Vemula 🚀🚀
